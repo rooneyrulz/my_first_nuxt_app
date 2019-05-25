@@ -6,7 +6,7 @@
       </li>
       <li class="list-group-item">
         <span class="">
-          <nuxt-link :to="'posts/'+post.id" class="btn btn-view btn-primary">
+          <nuxt-link :to="'posts/' + post.id" class="btn btn-view btn-primary">
             View
           </nuxt-link>
           <button @click="$emit('del-post', post.id)" class="btn btn-del btn-danger">

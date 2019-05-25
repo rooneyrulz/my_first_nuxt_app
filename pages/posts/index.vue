@@ -3,26 +3,36 @@
     <AddPost v-on:add-post="addPost"/>
     <div>
       <h1 class="display-4">Posts</h1>
-      <Post v-for="post in posts" :post="post" :key="post.id" v-on:del-post="deletePost"/>
+      <Spinner v-if="loading" />
+      <div v-if="!loading">
+        <Post
+          v-for="post in posts"
+          :post="post"
+          :key="post.id"
+          v-on:del-post="deletePost"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
 import Post from "@/components/Post/Post";
 import AddPost from "@/components/AddPost/AddPost";
+import Spinner from "@/components/Spinner/Spinner";
 
 export default {
   name: "Posts",
   components: {
     Post,
-    AddPost
+    AddPost,
+    Spinner
   },
   data() {
     return {
-      posts: []
+      posts: [],
+      loading: true
     };
   },
   async created() {
@@ -31,6 +41,7 @@ export default {
         "https://jsonplaceholder.typicode.com/posts"
       );
       this.posts = data.slice(0, 10);
+      this.loading = false;
     } catch (error) {
       console.log(error);
     }
