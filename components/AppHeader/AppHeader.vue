@@ -22,6 +22,9 @@
             <li class="nav-item">
               <nuxt-link class="nav-link" to="/posts">POSTS</nuxt-link>
             </li>
+            <li class="nav-item">
+              <nuxt-link class="nav-link" to="/about">ABOUT</nuxt-link>
+            </li>
           </ul>
         </div>
       </div>

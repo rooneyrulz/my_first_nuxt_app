@@ -3,11 +3,13 @@
     <ul class="list-group my-3">
       <li class="list-group-item">
         <strong>{{ post.title }}</strong>
-        <span class="float-right">
+      </li>
+      <li class="list-group-item">
+        <span class="">
           <nuxt-link :to="'posts/'+post.id" class="btn btn-view btn-primary">
             View
           </nuxt-link>
-          <button class="btn btn-del btn-danger">
+          <button @click="$emit('del-post', post.id)" class="btn btn-del btn-danger">
             DELETE
           </button>
         </span>
@@ -17,6 +19,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'Post',
   props: {
