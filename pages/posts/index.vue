@@ -3,6 +3,7 @@
     <AddPost v-on:add-post="addPost"/>
     <div>
       <h1 class="display-4">Posts</h1>
+      <SearchPost v-on:search-text="filterPost" />
       <Spinner v-if="loading" />
       <div v-if="!loading">
         <Post
@@ -20,6 +21,7 @@
 import axios from "axios";
 import Post from "@/components/Post/Post";
 import AddPost from "@/components/AddPost/AddPost";
+import SearchPost from "@/components/SearchPost/SearchPost";
 import Spinner from "@/components/Spinner/Spinner";
 
 export default {
@@ -27,7 +29,8 @@ export default {
   components: {
     Post,
     AddPost,
-    Spinner
+    Spinner,
+    SearchPost
   },
   data() {
     return {
@@ -71,11 +74,16 @@ export default {
       } catch (error) {
         console.log(error);
       }
+    },
+    filterPost(text) {
+      this.posts = this.posts.filter(post => {
+        return post.title.toLowerCase().match(text.toLowerCase());
+      });
     }
   }
 };
 </script>
 
 <style scoped>
-  
+
 </style>
